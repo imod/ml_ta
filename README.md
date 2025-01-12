@@ -23,8 +23,6 @@ cut -d, -f2 rai_allprod_collumns_clean.csv > second_column.csv
 
 cleanup columntype
 ```
-# remove first linecat
-#sed '1d' rai_allprod_collumns.csv > rai_allprod_collumns_clean.csv
 # ColumnType: replace every ',' enclosed in brackets '()' with (;)
 sed -E 's/\(([^)]*),([^)]*)\)/(\1;\2)/g' rai_allprod_collumns.csv > rai_allprod_collumns_clean.csv.1
 mv rai_allprod_collumns_clean.csv.1 rai_allprod_collumns_clean.csv
@@ -51,4 +49,27 @@ use machine learning to:
 # Online
 
 - K-Means Clustering Text Documents: Python in Excel Tutorial (Free Files) https://www.youtube.com/watch?v=55IKVSB5AoM
-- Split words: Viterbi algorithm, https://en.wikipedia.org/wiki/Viterbi_algorithm `wordninja.split('TOTALTIME')`
+- Topic Modeling Text Documents With LDA: Python in Excel Tutorial (Free Files) https://www.youtube.com/watch?v=b91ohJvEst4
+- Split words: Viterbi algorithm, https://en.wikipedia.org/wiki/Viterbi_algorithm `wordninja.split('TOTALTIME')` (default support for english)
+
+# PII data
+- https://docs.aws.amazon.com/de_de/sns/latest/dg/sns-message-data-protection-sensitive-data-types-pii.html
+- https://learn.microsoft.com/en-us/purview/sit-sensitive-information-type-entity-definitions
+  - https://learn.microsoft.com/en-us/purview/sit-defn-switzerland-ssn-ahv-number
+
+
+# procedure
+1. load the data
+1. treat each table as like a single document with column names as words 
+    combine all column-name into a new colum ('text')
+1. calculate TF-IDF
+
+   - only include terms with N occurences in all documents (`min_df`)
+   - only include terms witch are part of at max 75% of all documents (`max_df`)
+   - remove `stop_words` (`english`)
+1. use LDA (LatentDirichletAllocation) to build the clusters, this is similar to K-Means
+
+
+# Fragen
+- was/wo/wie/wann?
+  word2vec, kmean, lda, tf-idf?
