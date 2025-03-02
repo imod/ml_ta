@@ -54,8 +54,8 @@ The resulting data is persisted as a separate ZIP (`db_metadata.zip`) and is use
 1. clean/drop unused data
    - remove german terms
    - remove data of technical tables
-1. noramlise data
-   - Removes special characters
+1. normalise data
+   - Remove special characters
    - Remove numbers
    - Split the text into words
    - Remove short words
